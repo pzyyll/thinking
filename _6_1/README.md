@@ -16,7 +16,7 @@ Output must contain M lines, the i-th line of output containg the number of inve
 
 Example
 
-Input:
+Input:  
 10  
 2 6 6 4 7 6 3 5 9 1  
 7  
