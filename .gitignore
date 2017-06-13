@@ -34,3 +34,4 @@
 # Dir
 **/.idea/
 **/cmake-build-debug/
+**/debug/
