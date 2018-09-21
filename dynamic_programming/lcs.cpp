@@ -62,6 +62,25 @@ ResPair Lcs(const std::vector<char> x, const std::vector<char> y) {
     return std::make_pair(c, d);
 }
 
+void PrintResolve(const Matrix &d, const int i, const int j, const std::vector<char> &x) {
+    if (i == 0 || j == 0)
+        return;
+
+    switch (d[i][j]) {
+    case UP:
+        PrintResolve(d, i - 1, j, x);
+        break;
+    case LEFT:
+        PrintResolve(d, i, j - 1, x);
+        break;
+    default:
+        PrintResolve(d, i - 1, j - 1, x);
+        cout << x[i - 1];
+        break;
+    }
+
+}
+
 
 int main() {
 
@@ -72,7 +91,9 @@ int main() {
     std::vector<char> x(xstr.begin(), xstr.end());
     std::vector<char> y(ystr.begin(), ystr.end());
 
-    Lcs(y, x);
+    auto ress = Lcs(y, x);
+    PrintResolve(ress.second, y.size(), x.size(), y);
+    cout << endl;
 
     return 0;
 }
