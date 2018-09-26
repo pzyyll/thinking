@@ -113,7 +113,7 @@ void PrintResAll(const Matrix &c, const Matrix &d) {
                 cout << ":UL ";
                 break;
             default:
-                cout << " ";
+                cout << "    ";
                 break;
             }
         }
