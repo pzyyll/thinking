@@ -26,12 +26,12 @@ int LcsDpfC(Matrix &c, Matrix &d,
     if (x[i - 1] == y[j - 1]) {
         c[i][j] = LcsDpfC(c, d, x, i - 1, y, j - 1) + 1;
         d[i][j] = UPLEFT;
-    } else if (c[i - 1][j] >= c[i][j - 1]) {
-        c[i][j] = LcsDpfC(c, d, x, i - 1, y, j);
-        d[i][j] = UP;
     } else {
-        c[i][j] = LcsDpfC(c, d, x, i, y, j - 1);
-        d[i][j] = LEFT;
+        int res1 = LcsDpfC(c, d, x, i - 1, y, j);
+        int res2 = LcsDpfC(c, d, x, i, y, j - 1);
+
+        c[i][j] = res1 >= res2 ? res1 : res2;
+        d[i][j] = res1 >= res2 ? UP : LEFT;
     }
 
     return c[i][j];
@@ -39,20 +39,19 @@ int LcsDpfC(Matrix &c, Matrix &d,
 
 
 // @brief 自顶向下
+// 带备忘的自顶向下方法只会对需要用的子问题进行求解
 ResPair LcsDpf(const std::vector<char> x, const std::vector<char> y) {
     Matrix c(x.size() + 1, Column(y.size() + 1, 0));
     Matrix d = c;
 
-    for (unsigned i = 1; i <= x.size(); ++i) {
-        for (unsigned j = 1; j <= y.size(); ++j) {
-            c[i][j] = LcsDpfC(c, d, x, i, y, j);
-        }
-    }
+    LcsDpfC(c, d, x, x.size(), y, y.size());
 
     return ResPair(c, d);
 }
 
+
 // @brief 自底向上
+// 自底向上会对每个子问题进行求解。
 ResPair Lcs(const std::vector<char> x, const std::vector<char> y) {
     int len = 0;
 
@@ -74,10 +73,9 @@ ResPair Lcs(const std::vector<char> x, const std::vector<char> y) {
         }
     }
 
-
-
     return std::make_pair(c, d);
 }
+
 
 void PrintResolve(const Matrix &d, const int i, const int j, const std::vector<char> &x) {
     if (i == 0 || j == 0)
@@ -95,8 +93,8 @@ void PrintResolve(const Matrix &d, const int i, const int j, const std::vector<c
         cout << x[i - 1];
         break;
     }
-
 }
+
 
 void PrintResAll(const Matrix &c, const Matrix &d) {
     for (unsigned i = 0; i < c.size(); ++i) {
@@ -131,10 +129,19 @@ int main() {
     std::vector<char> x(xstr.begin(), xstr.end());
     std::vector<char> y(ystr.begin(), ystr.end());
 
+    cout << "只求解用到的子问题。" << endl;
     auto ress = LcsDpf(y, x);
     PrintResAll(ress.first, ress.second);
     PrintResolve(ress.second, y.size(), x.size(), y);
+    cout << endl << endl;
+
+
+    cout << "求解所有子问题。" << endl;
+    ress = Lcs(y, x);
+    PrintResAll(ress.first, ress.second);
+    PrintResolve(ress.second, y.size(), x.size(), y);
     cout << endl;
+
 
     return 0;
 }
