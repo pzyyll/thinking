@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -99,19 +100,19 @@ void PrintResolve(const Matrix &d, const int i, const int j, const std::vector<c
 void PrintResAll(const Matrix &c, const Matrix &d) {
     for (unsigned i = 0; i < c.size(); ++i) {
         for (unsigned j = 0; j < c[i].size(); ++j) {
-            cout << c[i][j];
+            cout << setw(4) << c[i][j];
             switch (d[i][j]) {
             case UP:
-                cout << ":Up ";
+                cout << ":Up";
                 break;
             case LEFT:
-                cout << ":Lt ";
+                cout << ":Lt";
                 break;
             case UPLEFT:
-                cout << ":UL ";
+                cout << ":UL";
                 break;
             default:
-                cout << "    ";
+                cout << "   ";
                 break;
             }
         }
