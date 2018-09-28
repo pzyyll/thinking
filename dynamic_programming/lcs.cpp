@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <iomanip>
+#include <utility>
 
 using namespace std;
 
@@ -122,9 +123,8 @@ void PrintResAll(const Matrix &c, const Matrix &d) {
 
 
 int main() {
-
-    //std::vector<char> x{'B','D','C','A','B','A'};
-    //std::vector<char> y{'A','B','C','B','D','A','B'};
+    // std::vector<char> x{'B','D','C','A','B','A'};
+    // std::vector<char> y{'A','B','C','B','D','A','B'};
     string xstr("BDCABA");
     string ystr("ABCBDAB");
     std::vector<char> x(xstr.begin(), xstr.end());
