@@ -3,6 +3,7 @@
 #include <map>
 #include <cmath>
 #include <algorithm>
+#include <sys/select.h>
 
 struct ScorePending {
 	ScorePending();
