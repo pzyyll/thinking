@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.9)
 project(dynamic_programming)
-
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(main main.cpp)
-add_executable(matrix matrix.cpp)
-add_executable(lcs lcs.cpp)
-add_executable(optimal_bst optimal_bst.cpp)
+add_executable(coins ./coins.cpp)
+add_executable(cut_steel ./cut_steel.cpp)
+add_executable(dp_grid ./dp_grid.cpp)
+add_executable(lcs ./lcs.cpp)
+add_executable(main ./main.cpp)
+add_executable(matrix ./matrix.cpp)
+add_executable(optimal_bst ./optimal_bst.cpp)
+add_executable(simple_longest_seq ./simple_longest_seq.cpp)
