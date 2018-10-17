@@ -13,11 +13,10 @@ void ConstructOptimalBst(double (*root)[N], const unsigned i, const unsigned j) 
         ConstructOptimalBst(root, root[i][j] + 1, j);
     }
 }
-
+#include <climits>
 int main() {
     std::vector<double> p{0, 0.15, 0.10, 0.05, 0.10, 0.20};
     std::vector<double> q{0.05, 0.10, 0.05, 0.05, 0.05, 0.10};
-
 
     double e[N][N] = {0};
     double w[N][N] = {0};

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <cmath>
 
 using namespace std;
 
@@ -27,16 +28,7 @@ inline int Parent(const int c) {
 }
 
 inline int GetDepth(const int i) {
-    if (0 == i) return 1;
-    int depth = 1;
-    while (true) {
-        int min = (0x1 << (depth - 1)) - 1;
-        int max = (0x1 << depth) - 2;
-        if (min <= i && i <= max)
-            return depth;
-        else
-            ++depth;
-    }
+    return std::ceil(std::log2(i + 2));
 }
 
 void PrintHeap(const vector<int> &seq, const unsigned root) {
@@ -94,6 +86,8 @@ void BuildHeap(vector<int> &seq, const compare compare_func = Less) {
 
 void HeapSort(vector<int> &seq, const compare compare_func = Less) {
     BuildHeap(seq, compare_func);
+
+    PrintHeap(seq, 0);
 
     unsigned heap_size = seq.size();
     for (unsigned i = seq.size(); i >= 2; --i) {

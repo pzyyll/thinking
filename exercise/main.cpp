@@ -2,24 +2,13 @@
 
 using namespace std;
 
-
-struct ListNode {
-    ListNode(const int vval) : val(vval), next(nullptr), pre(nullptr) {  }
-
-    int val;
-    ListNode *next;
-    ListNode *pre;
-};
-
-
-class List {
-public:
-   // @todo
-private:
-    ListNode *head;
-};
+int DiffDays(const unsigned begin, const unsigned end) {
+    if (begin >= end) return 0;
+    return (end - begin) / (1 * 24 * 3600);
+}
 
 int main() {
-    cout << min_int << "end" << endl;
+    cout << DiffDays(1539723599, 1539637200) << endl;
+    cout << "end" << endl;
     return 0;
 }
