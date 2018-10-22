@@ -8,7 +8,8 @@
 
 using namespace std;
 
-string kRecord[1000][1000];
+typedef vector<vector<string>> Vect2DString;
+Vect2DString kRecord;
 
 string LogestPalindrome(const string &s, const unsigned i, const unsigned j) {
     if (i == j) return s.substr(i, 1);
@@ -36,8 +37,12 @@ string LogestPalindrome(string s) {
 }
 
 int main() {
-    string s("ccb");
-    cout << LogestPalindrome(s) << endl;
+
+    string s;
+    while (cin >> s) {
+        kRecord = Vect2DString(s.size() + 1, vector<string>(s.size() + 1, ""));
+        cout << LogestPalindrome(s) << endl;
+    }
 
     std::cout << "Hello, World!" << std::endl;
     return 0;
