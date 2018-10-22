@@ -36,39 +36,26 @@ string LogestPalindrome(string s) {
     return s;
 }
 
-// @brief todo Bottom-Up
+// @brief Bottom-Up
 string LogestPalindromeBottomUp(string s) {
     if (s.empty()) return s;
 
     for (unsigned j = 0; j < s.size(); ++j) {
-        unsigned i = 0;
-
-        if (i == j) {
-            kRecord[i][j] = s.substr(i, 1);
-        } else if (s[i] == s[j] && i + 1 == j) {
-            kRecord[i][j] = string("") + s[i] + s[j];
-        } else if (s[i] == s[j]) {
-            string tstr = kRecord[i + 1][j - 1];
-            kRecord[i][j] = string("") + s[i] + kRecord[i + 1][j - 1] + s[j];
-        } else {
-            string str1 = kRecord[i][j - 1];
-            string str2;
-            for (unsigned k = 1; k <= j; ++k) {
-                if (k == j) {
-                    str2 = string("") + s[k];
-                    break;
-                } else if (s[k] == s[j] && k + 1 == j) {
-                    str2 = string("") + s[k] + s[j];
-                    break;
-                } else {
-                    str2 = string("") + s[k] + kRecord[k + 1][j - 1] + s[j];
-                }
+        for (unsigned i = j; i >= 0; --i) {
+            if (i == j) {
+                kRecord[i][j] = s[i];
+            } else if (s[i] == s[j]) {
+                kRecord[i][j] = string("") + s[i] +
+                    (i + 1 == j ? "" : kRecord[i + 1][j - 1]) +
+                    s[j];
+            } else {
+                string str1 = kRecord[i][j - 1];
+                string str2 = kRecord[i + 1][j];
+                kRecord[i][j] = (str1.size() > str2.size() ? str1 : str2);
             }
-            kRecord[i][j] = str1.size() > str2.size() ? str1 : str2;
+
+            if (i == 0) break;
         }
-
-
-        cout << kRecord[i][j] << endl;
     }
 
     return kRecord[0][s.size() - 1];
