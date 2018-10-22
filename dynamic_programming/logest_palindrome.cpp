@@ -36,12 +36,50 @@ string LogestPalindrome(string s) {
     return s;
 }
 
+// @brief todo Bottom-Up
+string LogestPalindromeBottomUp(string s) {
+    if (s.empty()) return s;
+
+    for (unsigned j = 0; j < s.size(); ++j) {
+        unsigned i = 0;
+
+        if (i == j) {
+            kRecord[i][j] = s.substr(i, 1);
+        } else if (s[i] == s[j] && i + 1 == j) {
+            kRecord[i][j] = string("") + s[i] + s[j];
+        } else if (s[i] == s[j]) {
+            string tstr = kRecord[i + 1][j - 1];
+            kRecord[i][j] = string("") + s[i] + kRecord[i + 1][j - 1] + s[j];
+        } else {
+            string str1 = kRecord[i][j - 1];
+            string str2;
+            for (unsigned k = 1; k <= j; ++k) {
+                if (k == j) {
+                    str2 = string("") + s[k];
+                    break;
+                } else if (s[k] == s[j] && k + 1 == j) {
+                    str2 = string("") + s[k] + s[j];
+                    break;
+                } else {
+                    str2 = string("") + s[k] + kRecord[k + 1][j - 1] + s[j];
+                }
+            }
+            kRecord[i][j] = str1.size() > str2.size() ? str1 : str2;
+        }
+
+
+        cout << kRecord[i][j] << endl;
+    }
+
+    return kRecord[0][s.size() - 1];
+}
+
 int main() {
 
     string s;
     while (cin >> s) {
         kRecord = Vect2DString(s.size() + 1, vector<string>(s.size() + 1, ""));
-        cout << LogestPalindrome(s) << endl;
+        cout << LogestPalindromeBottomUp(s) << endl;
     }
 
     std::cout << "Hello, World!" << std::endl;
