@@ -2,6 +2,11 @@
 // Created by caizhili on 2018-8-30.
 //
 
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
 //@brief
 // 面值 1, 3, 5 硬币中选择最少的硬币个数筹够 11 元。
 
@@ -23,3 +28,9 @@ void SelectNumCoins() {
     cout << "end" << endl;
 }
 
+
+int main() {
+
+    cout << "hello." << endl;
+    return 0;
+}

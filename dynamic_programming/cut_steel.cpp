@@ -2,9 +2,12 @@
 // Created by caizhili on 2018-8-30.
 //
 
+#include <vector>
+#include <iostream>
+
+using namespace std;
 
 // @brief 算法导论动态规划篇-钢条切割，自低向上实现
-
 int CutSteel(const std::vector<int> &v, const std::vector<int> &p, const int length) {
     int opt_val = -1;
     std::vector<int> dp(length + 1, 0);
@@ -37,4 +40,10 @@ int CutSteel(const std::vector<int> &v, const std::vector<int> &p, const int len
     cout << endl << "--end" << endl;
 
     return opt_val;
+}
+
+int main() {
+
+    cout << "hello." << endl;
+    return 0;
 }

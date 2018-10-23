@@ -2,6 +2,11 @@
 // Created by caizhili on 2018-8-30.
 //
 
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
 //@brief
 // 求序列中最长非降子序列长度
 int LongestSeq(const std::vector<int> &seq) {
@@ -18,3 +23,8 @@ int LongestSeq(const std::vector<int> &seq) {
     return dp[seq.size() - 1];
 }
 
+int main() {
+
+    cout << "hello." << endl;
+    return 0;
+}
