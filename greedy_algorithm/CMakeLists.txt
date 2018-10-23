@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+-e cmake_minimum_required(VERSION 3.6)
 project(greedy_algorithm)
 set(CMAKE_CXX_STANDARD 14)
 
