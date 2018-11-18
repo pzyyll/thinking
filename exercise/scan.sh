@@ -17,4 +17,4 @@ Scan() {
     done
 }
 
-Scan #> $CMAKE_FILE
+Scan > $CMAKE_FILE
